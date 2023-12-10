@@ -1,10 +1,20 @@
 <script lang="ts">
-  let count: number = 0
-  const increment = () => {
-    count += 1
-  }
+export let foo: number;
+
+let count = 0;
+
+$: doubled = doubleCount(count);
+
+function doubleCount(count: number) {
+  return count * 2
+}
+
+$: if (count >= 10) {
+  alert("Count is dangerously high!");
+}
+
 </script>
 
-<button on:click={increment}>
-  count is {count}
+<button on:click={() => count++}>
+  {foo} count is {count} and doubled is {doubled}
 </button>
